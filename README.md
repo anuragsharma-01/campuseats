@@ -1,6 +1,6 @@
 # 🍽️ CampusEats
 
-**Design Benchmark** · CS 543 — Web Services · `Group 8`
+**Design Benchmark** · CS 543 — Web Services · `Group 16`
 
 ---
 
