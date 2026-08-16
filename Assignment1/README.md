@@ -1,53 +1,33 @@
+Members : 
+Anurag Sharma (Leader) ,
+Harendra Godara ,
+Mohit Taylor ,
+Harshita Rathore ,
+
+
+
 # CampusEats
 
-## Team Members
+CampusEats is a campus food ordering and management system designed to make food ordering easier for students and help campus food providers manage orders.
 
-| Name                 | GitHub                                                 | Role       | Service                  |
-| -------------------- | ------------------------------------------------------ | ---------- | ------------------------ |
-| **Anurag Sharma**    | [@anuragsharma-01](https://github.com/anuragsharma-01) | **Leader** | Orders                   |
-| **Harendra Godara**  | `GitHub link to add`                                   | Member     | Catalogue                |
-| **Mohit Taylor**     | `GitHub link to add`                                   | Member     | Payments                 |
-| **Harshita Rathore** | `GitHub link to add`                                   | Member     | Accounts / Notifications |
+## Project Purpose
 
-## Project
+The project explores the design of a simple system where students can view available food, place orders, and track their orders, while food providers can manage menus and incoming orders.
 
-CampusEats is a web-based campus food ordering system that allows students to browse restaurants and menus, add food items to a cart, place orders, make payments, track deliveries, and receive notifications.
+## Project Files
 
-## Services
+- `README.md` — Project overview and setup information.
+- `http-log.md` — Five HTTP request/response examples made using curl, including a deliberate 404 response.
+- `network-analysis.md` — Analysis of a real website's network requests using Chrome DevTools.
 
-* **Accounts** — owns users, addresses, and login information.
-* **Catalogue** — owns restaurants, menus, and prices.
-* **Orders** — owns carts, orders, and order status.
-* **Payments** — owns transactions and refunds.
-* **Delivery** — owns riders and delivery assignments.
-* **Notifications** — owns the notification/message log.
+## HTTP Work
 
-## Repository Structure
+The HTTP requests were tested using `curl -i` against the JSONPlaceholder public read-only API.
 
-```text
-campuseats/
-├── README.md
-├── brief.md
-├── http-log.md
-├── network-analysis.md
-├── design.pdf
-├── services.drawio
-├── services.png
-├── schema.drawio
-├── schema.png
-├── schema.sql
-└── docs/
-```
+## Network Analysis
 
-## Assignment 2
+Google was inspected using Chrome DevTools Network panel with the browser cache disabled.
 
-This repository contains the CampusEats service design, service contracts, `placeOrder` specification, database schema, and service validation.
+## Status
 
-### Required Deliverables
-
-* `design.pdf`
-* `services.drawio`
-* `services.png`
-* `schema.drawio`
-* `schema.png`
-* `schema.sql`
+This repository is being built incrementally as part of the CampusEats project setup assignment.
