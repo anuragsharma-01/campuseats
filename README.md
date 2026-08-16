@@ -1,3 +1,11 @@
+Members
+Anurag Sharma (Leader)
+Harendra Godara
+Mohit Taylor 
+Harshita Rathore
+
+
+
 # CampusEats
 
 CampusEats is a campus food ordering and management system designed to make food ordering easier for students and help campus food providers manage orders.
