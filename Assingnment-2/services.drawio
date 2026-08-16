@@ -1,9 +1,96 @@
-<mxGraphModel><root><mxCell id="0"/><mxCell id="1" parent="0"/>
-<mxCell id="s1" value="Identity &amp; Administration Service&lt;br&gt;&lt;br&gt;&lt;b&gt;Owner:&lt;/b&gt; Anurag Sharma (Leader)&lt;br&gt;&lt;br&gt;&lt;b&gt;Owns:&lt;/b&gt;&lt;br&gt;• Users&lt;br&gt;• Roles&lt;br&gt;• Food Provider profiles&lt;br&gt;• Administrator access" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="30" y="100" width="260" height="240" as="geometry"/></mxCell>
-<mxCell id="s2" value="Catalogue Service&lt;br&gt;&lt;br&gt;&lt;b&gt;Owner:&lt;/b&gt; Mohit Tailor&lt;br&gt;&lt;br&gt;&lt;b&gt;Owns:&lt;/b&gt;&lt;br&gt;• Restaurants&lt;br&gt;• Menus&lt;br&gt;• Food Items&lt;br&gt;• Categories&lt;br&gt;• Availability&lt;br&gt;• Pickup Locations" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="330" y="100" width="260" height="240" as="geometry"/></mxCell>
-<mxCell id="s3" value="Order Service&lt;br&gt;&lt;br&gt;&lt;b&gt;Owner:&lt;/b&gt; Harshita Rathore&lt;br&gt;&lt;br&gt;&lt;b&gt;Owns:&lt;/b&gt;&lt;br&gt;• Orders&lt;br&gt;• Order Items&lt;br&gt;• Order Status&lt;br&gt;• Order Pickup selections" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="630" y="100" width="260" height="240" as="geometry"/></mxCell>
-<mxCell id="s4" value="Payment Service&lt;br&gt;&lt;br&gt;&lt;b&gt;Owner:&lt;/b&gt; Harendra Godara&lt;br&gt;&lt;br&gt;&lt;b&gt;Owns:&lt;/b&gt;&lt;br&gt;• Payments&lt;br&gt;• Payment Status&lt;br&gt;• Payment Transactions" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="930" y="100" width="260" height="240" as="geometry"/></mxCell>
-<mxCell id="e1" value="checkItems" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" edge="1" parent="1" source="s3" target="s2"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="e2" value="authorizePayment" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" edge="1" parent="1" source="s3" target="s4"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="e3" value="verifyAccess" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;" edge="1" parent="1" source="s1" target="s3"><mxGeometry relative="1" as="geometry"/></mxCell>
-</root></mxGraphModel>
+<mxGraphModel>
+  <root>
+
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+
+    <!-- ==================== IDENTITY & ADMINISTRATION ==================== -->
+
+    <mxCell
+      id="s1"
+      value="Identity &amp; Administration Service&lt;br&gt;&lt;br&gt;&lt;b&gt;Owner:&lt;/b&gt; Anurag Sharma (Leader)&lt;br&gt;&lt;br&gt;&lt;b&gt;Owns:&lt;/b&gt;&lt;br&gt;• Users&lt;br&gt;• Roles&lt;br&gt;• Food Provider profiles&lt;br&gt;• Administrator access"
+      style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;"
+      vertex="1"
+      parent="1">
+      <mxGeometry x="30" y="100" width="260" height="240" as="geometry"/>
+    </mxCell>
+
+
+    <!-- ==================== CATALOGUE SERVICE ==================== -->
+
+    <mxCell
+      id="s2"
+      value="Catalogue Service&lt;br&gt;&lt;br&gt;&lt;b&gt;Owner:&lt;/b&gt; Mohit Tailor&lt;br&gt;&lt;br&gt;&lt;b&gt;Owns:&lt;/b&gt;&lt;br&gt;• Restaurants&lt;br&gt;• Menus&lt;br&gt;• Food Items&lt;br&gt;• Categories&lt;br&gt;• Availability&lt;br&gt;• Pickup Locations"
+      style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;"
+      vertex="1"
+      parent="1">
+      <mxGeometry x="330" y="100" width="260" height="240" as="geometry"/>
+    </mxCell>
+
+
+    <!-- ==================== ORDER SERVICE ==================== -->
+
+    <mxCell
+      id="s3"
+      value="Order Service&lt;br&gt;&lt;br&gt;&lt;b&gt;Owner:&lt;/b&gt; Harshita Rathore&lt;br&gt;&lt;br&gt;&lt;b&gt;Owns:&lt;/b&gt;&lt;br&gt;• Orders&lt;br&gt;• Order Items&lt;br&gt;• Order Status&lt;br&gt;• Order Pickup selections"
+      style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;"
+      vertex="1"
+      parent="1">
+      <mxGeometry x="630" y="100" width="260" height="240" as="geometry"/>
+    </mxCell>
+
+
+    <!-- ==================== PAYMENT SERVICE ==================== -->
+
+    <mxCell
+      id="s4"
+      value="Payment Service&lt;br&gt;&lt;br&gt;&lt;b&gt;Owner:&lt;/b&gt; Harendra Godara&lt;br&gt;&lt;br&gt;&lt;b&gt;Owns:&lt;/b&gt;&lt;br&gt;• Payments&lt;br&gt;• Payment Status&lt;br&gt;• Payment Transactions"
+      style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;"
+      vertex="1"
+      parent="1">
+      <mxGeometry x="930" y="100" width="260" height="240" as="geometry"/>
+    </mxCell>
+
+
+    <!-- ==================== SERVICE COMMUNICATION ==================== -->
+
+    <!-- Order → Catalogue -->
+    <mxCell
+      id="e1"
+      value="checkItems"
+      style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;"
+      edge="1"
+      parent="1"
+      source="s3"
+      target="s2">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+
+    <!-- Order → Payment -->
+    <mxCell
+      id="e2"
+      value="authorizePayment"
+      style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;"
+      edge="1"
+      parent="1"
+      source="s3"
+      target="s4">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+
+    <!-- Identity → Order -->
+    <mxCell
+      id="e3"
+      value="verifyAccess"
+      style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;"
+      edge="1"
+      parent="1"
+      source="s1"
+      target="s3">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+  </root>
+</mxGraphModel>

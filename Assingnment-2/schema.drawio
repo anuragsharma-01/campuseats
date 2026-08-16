@@ -1,1 +1,206 @@
-<mxGraphModel><root><mxCell id="0"/><mxCell id="1" parent="0"/><mxCell id="g1" value="Identity &amp; Administration" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=14;" vertex="1" parent="1"><mxGeometry x="30" y="30" width="270" height="35" as="geometry"/></mxCell><mxCell id="g2" value="Catalogue" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=14;" vertex="1" parent="1"><mxGeometry x="320" y="30" width="300" height="35" as="geometry"/></mxCell><mxCell id="g3" value="Order" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=14;" vertex="1" parent="1"><mxGeometry x="640" y="30" width="300" height="35" as="geometry"/></mxCell><mxCell id="g4" value="Payment" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=14;" vertex="1" parent="1"><mxGeometry x="960" y="30" width="250" height="35" as="geometry"/></mxCell><mxCell id="u" value="&lt;b&gt;users&lt;/b&gt;&lt;br&gt;PK user_id BIGINT&lt;br&gt;name VARCHAR(120)&lt;br&gt;email VARCHAR(180) UNIQUE&lt;br&gt;password_hash VARCHAR(255)&lt;br&gt;role ENUM&lt;br&gt;created_at TIMESTAMP" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" vertex="1" parent="1"><mxGeometry x="50" y="90" width="230" height="140" as="geometry"/></mxCell><mxCell id="pp" value="&lt;b&gt;provider_profiles&lt;/b&gt;&lt;br&gt;PK provider_id BIGINT&lt;br&gt;FK user_id BIGINT&lt;br&gt;provider_name VARCHAR(150)&lt;br&gt;campus VARCHAR(120)&lt;br&gt;status ENUM" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" vertex="1" parent="1"><mxGeometry x="50" y="270" width="230" height="130" as="geometry"/></mxCell><mxCell id="r" value="&lt;b&gt;restaurants&lt;/b&gt;&lt;br&gt;PK restaurant_id BIGINT&lt;br&gt;provider_id BIGINT (external)&lt;br&gt;name VARCHAR(150)&lt;br&gt;campus VARCHAR(120)&lt;br&gt;status ENUM" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" vertex="1" parent="1"><mxGeometry x="340" y="90" width="260" height="120" as="geometry"/></mxCell><mxCell id="c" value="&lt;b&gt;categories&lt;/b&gt;&lt;br&gt;PK category_id BIGINT&lt;br&gt;name VARCHAR(100)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" vertex="1" parent="1"><mxGeometry x="340" y="250" width="260" height="100" as="geometry"/></mxCell><mxCell id="m" value="&lt;b&gt;menus&lt;/b&gt;&lt;br&gt;PK menu_id BIGINT&lt;br&gt;FK restaurant_id BIGINT&lt;br&gt;name VARCHAR(150)&lt;br&gt;status ENUM" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" vertex="1" parent="1"><mxGeometry x="340" y="380" width="260" height="110" as="geometry"/></mxCell><mxCell id="fi" value="&lt;b&gt;food_items&lt;/b&gt;&lt;br&gt;PK item_id BIGINT&lt;br&gt;FK menu_id BIGINT&lt;br&gt;FK category_id BIGINT&lt;br&gt;name VARCHAR(150)&lt;br&gt;price DECIMAL&lt;br&gt;available BOOLEAN" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" vertex="1" parent="1"><mxGeometry x="340" y="520" width="260" height="120" as="geometry"/></mxCell><mxCell id="pl" value="&lt;b&gt;pickup_locations&lt;/b&gt;&lt;br&gt;PK pickup_location_id BIGINT&lt;br&gt;campus VARCHAR(120)&lt;br&gt;name VARCHAR(150)&lt;br&gt;address VARCHAR(255)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" vertex="1" parent="1"><mxGeometry x="50" y="440" width="230" height="110" as="geometry"/></mxCell><mxCell id="o" value="&lt;b&gt;orders&lt;/b&gt;&lt;br&gt;PK order_id BIGINT&lt;br&gt;student_id BIGINT (external)&lt;br&gt;pickup_location_id BIGINT (external)&lt;br&gt;status ENUM&lt;br&gt;total_amount DECIMAL&lt;br&gt;created_at TIMESTAMP" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" vertex="1" parent="1"><mxGeometry x="660" y="90" width="260" height="140" as="geometry"/></mxCell><mxCell id="oi" value="&lt;b&gt;order_items&lt;/b&gt;&lt;br&gt;PK order_item_id BIGINT&lt;br&gt;FK order_id BIGINT&lt;br&gt;item_id BIGINT (external)&lt;br&gt;quantity INT&lt;br&gt;unit_price DECIMAL" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" vertex="1" parent="1"><mxGeometry x="660" y="280" width="260" height="120" as="geometry"/></mxCell><mxCell id="p" value="&lt;b&gt;payments&lt;/b&gt;&lt;br&gt;PK payment_id BIGINT&lt;br&gt;order_id BIGINT (external)&lt;br&gt;amount DECIMAL&lt;br&gt;method ENUM&lt;br&gt;status ENUM&lt;br&gt;transaction_reference VARCHAR&lt;br&gt;created_at TIMESTAMP" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" vertex="1" parent="1"><mxGeometry x="980" y="120" width="210" height="140" as="geometry"/></mxCell><mxCell id="se1" value="provider_profiles.user_id → users.user_id" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="1" source="pp" target="u"><mxGeometry relative="1" as="geometry"/></mxCell><mxCell id="se2" value="menus.restaurant_id → restaurants.restaurant_id" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="1" source="m" target="r"><mxGeometry relative="1" as="geometry"/></mxCell><mxCell id="se3" value="food_items.menu_id → menus.menu_id" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="1" source="fi" target="m"><mxGeometry relative="1" as="geometry"/></mxCell><mxCell id="se4" value="food_items.category_id → categories.category_id" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="1" source="fi" target="c"><mxGeometry relative="1" as="geometry"/></mxCell><mxCell id="se5" value="order_items.order_id → orders.order_id" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="1" source="oi" target="o"><mxGeometry relative="1" as="geometry"/></mxCell></root></mxGraphModel>
+<mxGraphModel>
+  <root>
+
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+
+    <!-- ==================== SERVICE GROUPS ==================== -->
+
+    <mxCell
+      id="g1"
+      value="Identity &amp; Administration"
+      style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=14;"
+      vertex="1"
+      parent="1">
+      <mxGeometry x="30" y="30" width="270" height="35" as="geometry"/>
+    </mxCell>
+
+    <mxCell
+      id="g2"
+      value="Catalogue"
+      style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=14;"
+      vertex="1"
+      parent="1">
+      <mxGeometry x="320" y="30" width="300" height="35" as="geometry"/>
+    </mxCell>
+
+    <mxCell
+      id="g3"
+      value="Order"
+      style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=14;"
+      vertex="1"
+      parent="1">
+      <mxGeometry x="640" y="30" width="300" height="35" as="geometry"/>
+    </mxCell>
+
+    <mxCell
+      id="g4"
+      value="Payment"
+      style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=14;"
+      vertex="1"
+      parent="1">
+      <mxGeometry x="960" y="30" width="250" height="35" as="geometry"/>
+    </mxCell>
+
+
+    <!-- ==================== IDENTITY TABLES ==================== -->
+
+    <mxCell
+      id="u"
+      value="&lt;b&gt;users&lt;/b&gt;&lt;br&gt;PK: user_id BIGINT&lt;br&gt;name VARCHAR(120)&lt;br&gt;email VARCHAR(180) UNIQUE&lt;br&gt;password_hash VARCHAR(255)&lt;br&gt;role ENUM&lt;br&gt;created_at TIMESTAMP"
+      style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;"
+      vertex="1"
+      parent="1">
+      <mxGeometry x="50" y="90" width="230" height="140" as="geometry"/>
+    </mxCell>
+
+    <mxCell
+      id="pp"
+      value="&lt;b&gt;provider_profiles&lt;/b&gt;&lt;br&gt;PK: provider_id BIGINT&lt;br&gt;FK: user_id BIGINT&lt;br&gt;provider_name VARCHAR(150)&lt;br&gt;campus VARCHAR(120)&lt;br&gt;status ENUM"
+      style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;"
+      vertex="1"
+      parent="1">
+      <mxGeometry x="50" y="270" width="230" height="130" as="geometry"/>
+    </mxCell>
+
+
+    <!-- ==================== CATALOGUE TABLES ==================== -->
+
+    <mxCell
+      id="r"
+      value="&lt;b&gt;restaurants&lt;/b&gt;&lt;br&gt;PK: restaurant_id BIGINT&lt;br&gt;provider_id BIGINT (external)&lt;br&gt;name VARCHAR(150)&lt;br&gt;campus VARCHAR(120)&lt;br&gt;status ENUM"
+      style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;"
+      vertex="1"
+      parent="1">
+      <mxGeometry x="340" y="90" width="260" height="120" as="geometry"/>
+    </mxCell>
+
+    <mxCell
+      id="c"
+      value="&lt;b&gt;categories&lt;/b&gt;&lt;br&gt;PK: category_id BIGINT&lt;br&gt;name VARCHAR(100)"
+      style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;"
+      vertex="1"
+      parent="1">
+      <mxGeometry x="340" y="250" width="260" height="100" as="geometry"/>
+    </mxCell>
+
+    <mxCell
+      id="m"
+      value="&lt;b&gt;menus&lt;/b&gt;&lt;br&gt;PK: menu_id BIGINT&lt;br&gt;FK: restaurant_id BIGINT&lt;br&gt;name VARCHAR(150)&lt;br&gt;status ENUM"
+      style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;"
+      vertex="1"
+      parent="1">
+      <mxGeometry x="340" y="380" width="260" height="110" as="geometry"/>
+    </mxCell>
+
+    <mxCell
+      id="fi"
+      value="&lt;b&gt;food_items&lt;/b&gt;&lt;br&gt;PK: item_id BIGINT&lt;br&gt;FK: menu_id BIGINT&lt;br&gt;FK: category_id BIGINT&lt;br&gt;name VARCHAR(150)&lt;br&gt;price DECIMAL&lt;br&gt;available BOOLEAN"
+      style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;"
+      vertex="1"
+      parent="1">
+      <mxGeometry x="340" y="520" width="260" height="120" as="geometry"/>
+    </mxCell>
+
+    <mxCell
+      id="pl"
+      value="&lt;b&gt;pickup_locations&lt;/b&gt;&lt;br&gt;PK: pickup_location_id BIGINT&lt;br&gt;campus VARCHAR(120)&lt;br&gt;name VARCHAR(150)&lt;br&gt;address VARCHAR(255)"
+      style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;"
+      vertex="1"
+      parent="1">
+      <mxGeometry x="50" y="440" width="230" height="110" as="geometry"/>
+    </mxCell>
+
+
+    <!-- ==================== ORDER TABLES ==================== -->
+
+    <mxCell
+      id="o"
+      value="&lt;b&gt;orders&lt;/b&gt;&lt;br&gt;PK: order_id BIGINT&lt;br&gt;student_id BIGINT (external)&lt;br&gt;pickup_location_id BIGINT (external)&lt;br&gt;status ENUM&lt;br&gt;total_amount DECIMAL&lt;br&gt;created_at TIMESTAMP"
+      style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;"
+      vertex="1"
+      parent="1">
+      <mxGeometry x="660" y="90" width="260" height="140" as="geometry"/>
+    </mxCell>
+
+    <mxCell
+      id="oi"
+      value="&lt;b&gt;order_items&lt;/b&gt;&lt;br&gt;PK: order_item_id BIGINT&lt;br&gt;FK: order_id BIGINT&lt;br&gt;item_id BIGINT (external)&lt;br&gt;quantity INT&lt;br&gt;unit_price DECIMAL"
+      style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;"
+      vertex="1"
+      parent="1">
+      <mxGeometry x="660" y="280" width="260" height="120" as="geometry"/>
+    </mxCell>
+
+
+    <!-- ==================== PAYMENT TABLE ==================== -->
+
+    <mxCell
+      id="p"
+      value="&lt;b&gt;payments&lt;/b&gt;&lt;br&gt;PK: payment_id BIGINT&lt;br&gt;order_id BIGINT (external)&lt;br&gt;amount DECIMAL&lt;br&gt;method ENUM&lt;br&gt;status ENUM&lt;br&gt;transaction_reference VARCHAR&lt;br&gt;created_at TIMESTAMP"
+      style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;"
+      vertex="1"
+      parent="1">
+      <mxGeometry x="980" y="120" width="210" height="140" as="geometry"/>
+    </mxCell>
+
+
+    <!-- ==================== RELATIONSHIPS ==================== -->
+
+    <mxCell
+      id="se1"
+      value="FK: provider_profiles.user_id → users.user_id"
+      style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;"
+      edge="1"
+      parent="1"
+      source="pp"
+      target="u">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+    <mxCell
+      id="se2"
+      value="FK: menus.restaurant_id → restaurants.restaurant_id"
+      style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;"
+      edge="1"
+      parent="1"
+      source="m"
+      target="r">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+    <mxCell
+      id="se3"
+      value="FK: food_items.menu_id → menus.menu_id"
+      style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;"
+      edge="1"
+      parent="1"
+      source="fi"
+      target="m">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+    <mxCell
+      id="se4"
+      value="FK: food_items.category_id → categories.category_id"
+      style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;"
+      edge="1"
+      parent="1"
+      source="fi"
+      target="c">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+    <mxCell
+      id="se5"
+      value="FK: order_items.order_id → orders.order_id"
+      style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;"
+      edge="1"
+      parent="1"
+      source="oi"
+      target="o">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+  </root>
+</mxGraphModel>
