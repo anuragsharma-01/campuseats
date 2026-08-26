@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+ xmlns:pay="http://campuseats.example.com/payment">
+ <soap:Header>
+  <pay:Credentials>
+   <pay:merchantId>CE-CAMPUS-001</pay:merchantId>
+   <pay:apiKey>REDACTED-DEMO-KEY</pay:apiKey>
+   <pay:timestamp>2026-08-26T22:30:00+05:30</pay:timestamp>
+  </pay:Credentials>
+ </soap:Header>
+ <soap:Body>
+  <pay:ChargeRequest>
+   <pay:merchantId>CE-CAMPUS-001</pay:merchantId>
+   <pay:orderId>CE-ORD-10045</pay:orderId>
+   <pay:amount>249.00</pay:amount>
+   <pay:currency>INR</pay:currency>
+   <pay:paymentToken>tok_demo_7F83A2</pay:paymentToken>
+  </pay:ChargeRequest>
+ </soap:Body>
+</soap:Envelope>

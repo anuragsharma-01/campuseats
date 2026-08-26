@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+ xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+ xmlns:tns="http://campuseats.example.com/payment"
+ targetNamespace="http://campuseats.example.com/payment"
+ name="CampusEatsPaymentGateway">
+ <wsdl:types>
+  <xsd:schema targetNamespace="http://campuseats.example.com/payment" elementFormDefault="qualified">
+   <xsd:element name="ChargeRequest"><xsd:complexType><xsd:sequence>
+    <xsd:element name="merchantId" type="xsd:string"/>
+    <xsd:element name="orderId" type="xsd:string"/>
+    <xsd:element name="amount" type="xsd:decimal"/>
+    <xsd:element name="currency" type="xsd:string"/>
+    <xsd:element name="paymentToken" type="xsd:string"/>
+   </xsd:sequence></xsd:complexType></xsd:element>
+   <xsd:element name="ChargeResponse"><xsd:complexType><xsd:sequence>
+    <xsd:element name="status" type="xsd:string"/>
+    <xsd:element name="transactionId" type="xsd:string"/>
+    <xsd:element name="orderId" type="xsd:string"/>
+    <xsd:element name="message" type="xsd:string"/>
+   </xsd:sequence></xsd:complexType></xsd:element>
+  </xsd:schema>
+ </wsdl:types>
+ <wsdl:message name="ChargeInput"><wsdl:part name="parameters" element="tns:ChargeRequest"/></wsdl:message>
+ <wsdl:message name="ChargeOutput"><wsdl:part name="parameters" element="tns:ChargeResponse"/></wsdl:message>
+ <wsdl:portType name="PaymentGatewayPortType"><wsdl:operation name="charge">
+  <wsdl:input message="tns:ChargeInput"/><wsdl:output message="tns:ChargeOutput"/>
+ </wsdl:operation></wsdl:portType>
+ <wsdl:binding name="PaymentGatewaySoapBinding" type="tns:PaymentGatewayPortType">
+  <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+  <wsdl:operation name="charge">
+   <soap:operation soapAction="http://campuseats.example.com/payment/charge"/>
+   <wsdl:input><soap:body use="literal"/></wsdl:input>
+   <wsdl:output><soap:body use="literal"/></wsdl:output>
+  </wsdl:operation>
+ </wsdl:binding>
+ <wsdl:service name="CampusEatsPaymentGateway">
+  <wsdl:port name="PaymentGatewayPort" binding="tns:PaymentGatewaySoapBinding">
+   <soap:address location="https://payments.partner.example.com/soap/PaymentGateway"/>
+  </wsdl:port>
+ </wsdl:service>
+</wsdl:definitions>
