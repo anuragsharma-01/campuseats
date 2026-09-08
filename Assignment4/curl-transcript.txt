@@ -1,0 +1,28 @@
+# Required curl transcript format
+
+# 1. Successful create — 201 + Location
+curl -i -X POST http://localhost:5001/orders \
+  -H "Content-Type: application/json" \
+  -H "Idempotency-Key: order-demo-001" \
+  -d '{"customer_id":"student-17","restaurant_id":"rest-2","items":[{"menu_item_id":"m-101","quantity":2}],"delivery_address":"Hostel A"}'
+
+HTTP/1.1 201 CREATED
+Location: /orders/<created-id>
+
+# 2. Same request + same key — original result
+# Expected: 201 CREATED, same order id and Location.
+
+# 3. Malformed body
+curl -i -X POST http://localhost:5001/orders \
+  -H "Content-Type: application/json" -H "Idempotency-Key: bad-1" \
+  -d '{"customer_id":"student-17"}'
+# Expected: 400 BAD REQUEST
+
+# 4. Missing resource
+curl -i http://localhost:5001/orders/no-such-id
+# Expected: 404 NOT FOUND
+
+# 5. State conflict
+curl -i -X POST http://localhost:5001/orders/<created-id>/cancellation
+# First: 202 ACCEPTED
+# Second: 409 CONFLICT

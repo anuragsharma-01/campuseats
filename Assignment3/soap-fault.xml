@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <soap:Header/>
+ <soap:Body>
+  <soap:Fault>
+   <faultcode>soap:Client</faultcode>
+   <faultstring>Payment declined</faultstring>
+   <detail><PaymentFault>
+    <code>card_declined</code>
+    <orderId>CE-ORD-10045</orderId>
+    <message>Issuer declined the payment.</message>
+   </PaymentFault></detail>
+  </soap:Fault>
+ </soap:Body>
+</soap:Envelope>

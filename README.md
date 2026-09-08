@@ -10,7 +10,7 @@
 | -------------------- | ----------- | ------------------------------------------------------ | ---------- | ------------------------- |
 | **Anurag Sharma**    | 20251651027 | [@anuragsharma-01](https://github.com/anuragsharma-01) | **Leader** | Identity & Administration |
 | **Mohit Tailor**     | 20251651058 | [@mohit-taylor](https://github.com/mohit-taylor)                                        | Member     | Catalogue                 |
-| **Harshita Rathore** | 20251651043 | [@harendra-godara](https://github.com/harendra-godara)                                      | Member     | Order                     |
+| **Harshita Rathore** | 20251651043 | [@harendra-godara](https://github.com/harendra-godara)                                     | Member     | Order                     |
 | **Harendra Godara**  | 20251651041 | [@harshitarathore768](https://github.com/harshitarathore786)                                           | Member     | Payment                   |
 
 ---
