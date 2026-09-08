@@ -1,0 +1,5 @@
+Flask>=2.3
+requests>=2.31
+pytest>=7.4
+PyYAML>=6.0
+openapi-spec-validator>=0.7

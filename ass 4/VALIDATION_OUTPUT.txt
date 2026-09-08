@@ -1,0 +1,13 @@
+OpenAPI validation checklist
+- info: present
+- servers: present
+- paths: present
+- components.schemas: present
+- Four required REST endpoint behaviours are documented.
+- Request/parameters and two or more responses are documented for each operation.
+- Reusable schemas are defined once and referenced with $ref.
+- Failure responses are explicitly documented.
+
+Run locally:
+python -m openapi_spec_validator openapi.yaml
+Expected result: zero errors.
