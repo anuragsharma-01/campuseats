@@ -1,0 +1,94 @@
+# CampusEats Assignment 5 - curl transcript
+
+# 1. Successful create — 201 + Location
+curl.exe -i -X POST http://localhost:5001/orders ^
+  -H "Content-Type: application/json" ^
+  -H "Authorization: Bearer demo-token" ^
+  -H "Idempotency-Key: order-demo-001" ^
+  -d "{\"customer_id\":\"student-17\",\"restaurant_id\":\"rest-2\",\"items\":[{\"menu_item_id\":\"m-101\",\"quantity\":2}],\"delivery_address\":\"Hostel A\"}"
+
+# Expected:
+# HTTP/1.1 201 CREATED
+# Location: /orders/<created-id>
+
+# 2. Repeat same request + same Idempotency-Key
+curl.exe -i -X POST http://localhost:5001/orders ^
+  -H "Content-Type: application/json" ^
+  -H "Authorization: Bearer demo-token" ^
+  -H "Idempotency-Key: order-demo-001" ^
+  -d "{\"customer_id\":\"student-17\",\"restaurant_id\":\"rest-2\",\"items\":[{\"menu_item_id\":\"m-101\",\"quantity\":2}],\"delivery_address\":\"Hostel A\"}"
+
+# Expected:
+# HTTP/1.1 201 CREATED
+# Same order ID and Location as request 1.
+
+# 3. Conditional GET — first request obtains ETag
+curl.exe -i http://localhost:5001/orders/<created-id>
+
+# Expected:
+# HTTP/1.1 200 OK
+# ETag: "<etag-value>"
+# Cache-Control: private, max-age=60
+
+# 4. Conditional GET — If-None-Match
+curl.exe -i http://localhost:5001/orders/<created-id> ^
+  -H "If-None-Match: \"<etag-value>\""
+
+# Expected:
+# HTTP/1.1 304 NOT MODIFIED
+# ETag: "<etag-value>"
+
+# 5. Conditional write — stale If-Match
+curl.exe -i -X PATCH http://localhost:5001/orders/<created-id> ^
+  -H "Content-Type: application/json" ^
+  -H "Authorization: Bearer demo-token" ^
+  -H "If-Match: \"stale-etag\"" ^
+  -d "{\"status\":\"preparing\"}"
+
+# Expected:
+# HTTP/1.1 412 PRECONDITION FAILED
+
+# 6. Malformed request — 400
+curl.exe -i -X POST http://localhost:5001/orders ^
+  -H "Content-Type: application/json" ^
+  -H "Authorization: Bearer demo-token" ^
+  -H "Idempotency-Key: bad-1" ^
+  -d "{\"customer_id\":\"student-17\"}"
+
+# Expected:
+# HTTP/1.1 400 BAD REQUEST
+
+# 7. Missing resource — 404
+curl.exe -i http://localhost:5001/orders/no-such-id
+
+# Expected:
+# HTTP/1.1 404 NOT FOUND
+
+# 8. Missing authorization — 401
+curl.exe -i -X POST http://localhost:5001/orders ^
+  -H "Content-Type: application/json" ^
+  -H "Idempotency-Key: no-auth-1" ^
+  -d "{\"customer_id\":\"student-17\",\"restaurant_id\":\"rest-2\",\"items\":[{\"menu_item_id\":\"m-101\",\"quantity\":1}]}"
+
+# Expected:
+# HTTP/1.1 401 UNAUTHORIZED
+
+# 9. OPTIONS — Allow header
+curl.exe -i -X OPTIONS http://localhost:5001/orders
+
+# Expected:
+# HTTP/1.1 204 NO CONTENT
+# Allow: GET, POST, OPTIONS
+
+# 10. Rate limit
+# Send more than 10 requests within the configured 60-second window.
+# Expected after the limit is reached:
+# HTTP/1.1 429 TOO MANY REQUESTS
+# X-RateLimit-Limit: 10
+# X-RateLimit-Remaining: 0
+# Retry-After: <seconds>
+
+# Security headers expected on responses:
+# X-Content-Type-Options: nosniff
+# Strict-Transport-Security: max-age=31536000
+# Access-Control-Allow-Origin: *

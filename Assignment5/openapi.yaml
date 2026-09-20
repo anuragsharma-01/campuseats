@@ -1,0 +1,241 @@
+openapi: 3.0.3
+
+info:
+  title: CampusEats Orders Service
+  version: 1.0.0
+  description: REST API for managing CampusEats orders.
+
+servers:
+  - url: http://localhost:5001
+
+paths:
+  /orders:
+    get:
+      summary: List orders
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [pending, confirmed, preparing, ready, delivered, cancelled]
+        - name: sort
+          in: query
+          schema:
+            type: string
+            enum: [created_at, status]
+            default: created_at
+        - name: order
+          in: query
+          schema:
+            type: string
+            enum: [asc, desc]
+            default: asc
+        - name: page
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 10
+      responses:
+        "200":
+          description: List of orders
+        "400":
+          description: Invalid query parameters
+
+    post:
+      summary: Create an order
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OrderRequest"
+      responses:
+        "201":
+          description: Order created
+          headers:
+            Location:
+              description: URL of the created order
+              schema:
+                type: string
+        "400":
+          description: Malformed request
+        "401":
+          description: Missing or invalid authorization
+        "422":
+          description: Domain validation or payment rejection
+        "429":
+          description: Rate limit exceeded
+        "503":
+          description: Payment service unavailable
+
+    options:
+      summary: Describe supported methods
+      responses:
+        "204":
+          description: No content
+          headers:
+            Allow:
+              schema:
+                type: string
+
+  /orders/{orderId}:
+    parameters:
+      - name: orderId
+        in: path
+        required: true
+        schema:
+          type: string
+
+    get:
+      summary: Get an order
+      responses:
+        "200":
+          description: Order representation
+          headers:
+            ETag:
+              schema:
+                type: string
+            Cache-Control:
+              schema:
+                type: string
+        "304":
+          description: Not modified
+        "404":
+          description: Order not found
+
+    patch:
+      summary: Update order status
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/IfMatch"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - status
+              properties:
+                status:
+                  type: string
+                  enum: [pending, confirmed, preparing, ready, delivered, cancelled]
+      responses:
+        "200":
+          description: Order updated
+        "401":
+          description: Missing or invalid authorization
+        "404":
+          description: Order not found
+        "412":
+          description: Precondition failed
+        "422":
+          description: Invalid order status
+
+    delete:
+      summary: Delete an order
+      security:
+        - bearerAuth: []
+      responses:
+        "204":
+          description: Order deleted
+        "401":
+          description: Missing or invalid authorization
+        "404":
+          description: Order not found
+
+    options:
+      summary: Describe supported methods
+      responses:
+        "204":
+          description: No content
+          headers:
+            Allow:
+              schema:
+                type: string
+
+  /orders/{orderId}/cancellation:
+    post:
+      summary: Cancel an order
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "202":
+          description: Cancellation accepted
+        "401":
+          description: Missing or invalid authorization
+        "404":
+          description: Order not found
+        "409":
+          description: State conflict
+        "422":
+          description: Domain validation failure
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+
+  parameters:
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: true
+      schema:
+        type: string
+
+    IfMatch:
+      name: If-Match
+      in: header
+      required: true
+      schema:
+        type: string
+
+  schemas:
+    OrderRequest:
+      type: object
+      required:
+        - customer_id
+        - restaurant_id
+        - items
+      properties:
+        customer_id:
+          type: string
+        restaurant_id:
+          type: string
+        delivery_address:
+          type: string
+        items:
+          type: array
+          minItems: 1
+          items:
+            type: object
+            required:
+              - menu_item_id
+              - quantity
+            properties:
+              menu_item_id:
+                type: string
+              quantity:
+                type: integer
+                minimum: 1
