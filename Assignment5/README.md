@@ -1,4 +1,4 @@
-# CampusEats — Tutorial 5 / Assignment 5
+# CampusEats —  Assignment 5
 
 ## Orders Service
 
