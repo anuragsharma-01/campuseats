@@ -6,10 +6,10 @@
 
 ### Team
 
-- Anurag Sharma — Leader
-- Mohit Tailor
-- Harshita Rathore
-- Harendra Godara
+- Anurag Sharma — 20251651027(Leader)
+- Mohit Tailor - 20251651058
+- Harshita Rathore - 20251651043
+- Harendra Godara - 20251651043
 
 
 ## 1. Project Overview
