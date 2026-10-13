@@ -11,18 +11,6 @@
 - Harshita Rathore
 - Harendra Godara
 
-### Submission Files
-
-- `openapi.yaml`
-- `app.py`
-- `models.py`
-- `store.py`
-- `errors.py`
-- `tests/test_app.py`
-- `NOTES.md`
-- `curl-transcript.txt`
-- `VALIDATION_OUTPUT.txt`
-- `requirements.txt`
 
 ## 1. Project Overview
 
